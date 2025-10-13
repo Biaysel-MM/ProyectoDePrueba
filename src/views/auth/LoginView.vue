@@ -36,12 +36,12 @@
     <!-- segunda seccion del login lado izquierdo para dispositivos grandes -->
     <section id="segundaSection">
       <div class="containerGeneralDos">
-        <img src="../assets/Logo-Login.png" alt="logo de la contraloria" class="segundaSection__img">
+        <img src="../../assets/Logo-Login.png" alt="logo de la contraloria" class="segundaSection__img">
         <div class="segundaSection__titulosPrincipales">
           <h2>Bienvenido</h2>
           <p>Ingresa tus credenciales para acceder</p>
         </div>
-        <form class="segundaSection__formulario">
+        <form class="segundaSection__formulario" @submit.prevent="">
           <div class="formulario__inputContainer">
             <label for="usuario" class="inputContainer__label">Usuario</label>
             <div class="inputContainer__content">
@@ -57,7 +57,7 @@
               <i class="fa-solid fa-eye form-fa"></i>
             </div>
           </div>
-         <a href=""> <button class="formulario__button"><i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar Sesión</button></a>
+         <router-link to="/dashboard"> <button class="formulario__button"><i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar Sesión</button></router-link>
         </form>
         <span class="lineaNegra"></span>
         <p class="segundaSection__pie-parrafo pie-parrafo1"><i class="fa-solid fa-shield-halved"></i> Acceso seguro y protegido</p>
@@ -68,7 +68,7 @@
 </template>
 
 <script></script>
-<style>
+<style scoped>
   #mainLogin{
     display: flex;
   }
@@ -199,6 +199,9 @@
     color: #fff;
     font-size: 16px;
     transition: all .5s;
+  }
+  .formulario__button i{
+    margin-right: 10px;
   }
   .formulario__button:hover{
     background: linear-gradient(to right, #A10E1E, #CC1126);
