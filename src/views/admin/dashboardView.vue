@@ -14,45 +14,45 @@
         <ul class="navbar__ulContainer">
           <li>
             <router-link to="/dashboard" class="navbar__navsLinks navsLinksActive">
-              <i class="fa-solid fa-chart-line" id="navsLinksActiveI"></i>
-              <span id="navsLinksActiveSpan">Dashboard</span>
+              <i class="fa-solid fa-chart-line navsLinskAll" id="navsLinksActiveI"></i>
+              <span id="navsLinksActiveSpan" class="navsLinskAll">Dashboard</span>
               <i class="fa-solid fa-chevron-right" id="navsLinksActiveI"></i>
             </router-link>
           </li>
           <li>
             <router-link to="/equipos" class="navbar__navsLinks">
-              <i class="fa-solid fa-desktop"></i>
-              <span>Equipos</span>
+              <i class="fa-solid fa-desktop navsLinskAll"></i>
+              <span  class="navsLinskAll">Equipos</span>
             </router-link>
           </li>
           <li>
             <router-link to="/movimientos" class="navbar__navsLinks">
-              <i class="fa-solid fa-right-left"></i>
-              <span>Movimientos</span>
+              <i class="fa-solid fa-right-left navsLinskAll"></i>
+              <span class="navsLinskAll">Movimientos</span>
             </router-link>
           </li>
           <li>
             <router-link to="/mantenimiento" class="navbar__navsLinks">
-              <i class="fa-solid fa-screwdriver-wrench"></i>
-              <span>Mantenimiento</span>
+              <i class="fa-solid fa-screwdriver-wrench navsLinskAll"></i>
+              <span class="navsLinskAll">Mantenimiento</span>
             </router-link>
           </li>
           <li>
             <router-link to="/almacen" class="navbar__navsLinks">
-              <i class="fa-solid fa-warehouse"></i>
-              <span>Almacén</span>
+              <i class="fa-solid fa-warehouse navsLinskAll"></i>
+              <span  class="navsLinskAll">Almacén</span>
             </router-link>
           </li>
           <li>
             <router-link to="/reportes" class="navbar__navsLinks">
-              <i class="fa-solid fa-file-lines"></i>
-              <span>Reportes</span>
+              <i class="fa-solid fa-file-lines navsLinskAll"></i>
+              <span class="navsLinskAll">Reportes</span>
             </router-link>
           </li>
           <li>
             <router-link to="/usuarios" class="navbar__navsLinks">
-              <i class="fa-solid fa-users"></i>
-              <span>Usuarios</span>
+              <i class="fa-solid fa-users navsLinskAll"></i>
+              <span class="navsLinskAll">Usuarios</span>
             </router-link>
           </li>
         </ul>
@@ -61,12 +61,12 @@
       <div class="aside__pieDelAside">
         <span class="lineaDivisora"></span>
         <a href="#" class="navbar__navsLinks">
-          <i class="fa-solid fa-chevron-left"></i>
-          <span>Contraer</span>
+          <i class="fa-solid fa-chevron-left navsLinskAll"></i>
+          <span class="navsLinskAll">Contraer</span>
         </a>
         <a href="/" class="navbar__navsLinks navsLinksCerrarSesion">
-          <i class="fa-solid fa-arrow-right-to-bracket"></i>
-          <span>Cerrar Sesión</span>
+          <i class="fa-solid fa-arrow-right-to-bracket navsLinskAll navsLinskCerrarSesion"></i>
+          <span class="navsLinskAll navsLinskCerrarSesion">Cerrar Sesión</span>
         </a>
       </div>
     </aside>
@@ -217,13 +217,16 @@
   .fa-chevron-right{
     margin-left: auto;
   }
-  .navbar__navsLinks i, .navbar__navsLinks span{
+  .navsLinskAll{
     color: #D1D5DC;
     font-size: 15px;
     font-weight: 600;
   }
-  .navsLinksActive, .navsLinksActive:hover, .navsLinksCerrarSesion:hover{
+  .navsLinksActive, .navsLinksActive:hover, .navsLinksCerrarSesion:hover {
     background: #CE1126;
+  }
+  .navsLinksCerrarSesion:hover .navsLinskCerrarSesion{
+    color: #fff;
   }
   #navsLinksActiveI, #navsLinksActiveSpan{
     color: #fff;
