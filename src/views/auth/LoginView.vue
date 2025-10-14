@@ -144,7 +144,7 @@
     width: 200px;
   }
   .segundaSection__titulosPrincipales{
-    margin: 30px;
+    margin: 20px;
   }
   .segundaSection__titulosPrincipales h2{
     font-size: 35px;
@@ -214,7 +214,7 @@
     width: 100%;
     height: 1px;
     background-color: #ccc;
-    margin: 30px 0;
+    margin: 15px 0;
   }
   .segundaSection__pie-parrafo{
     font-size: 14px;
@@ -224,7 +224,7 @@
   }
   .pie-parrafo1{
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   .pie-parrafo2{
     color: #666;
