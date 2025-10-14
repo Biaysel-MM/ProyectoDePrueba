@@ -57,7 +57,7 @@
               <i class="fa-solid fa-eye form-fa"></i>
             </div>
           </div>
-         <router-link to="/dashboard"> <button class="formulario__button"><i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar Sesión</button></router-link>
+         <router-link to="/admin/dashboard"> <button class="formulario__button"><i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar Sesión</button></router-link>
         </form>
         <span class="lineaNegra"></span>
         <p class="segundaSection__pie-parrafo pie-parrafo1"><i class="fa-solid fa-shield-halved"></i> Acceso seguro y protegido</p>

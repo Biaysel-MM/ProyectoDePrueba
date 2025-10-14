@@ -11,3 +11,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* es para restringir la seccion donde va todo el contenido de las paginas  */
+.containerRetringido {
+  max-width: 1100px;
+}
