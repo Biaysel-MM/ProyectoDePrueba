@@ -169,6 +169,47 @@ import navbarView from '../iu/navbarView.vue';
                 <i class="fas fa-edit text-gray-600"></i>
              </footer>
           </article>
+                    <article class="todosLosEquipos__card">
+            <!-- Encabezado del card -->
+            <header class="card__encabezado">
+              <i class="fas fa-tv text-2xl icono-tipo"></i>
+              <span class="estado activo">Activo</span>
+            </header>
+
+            <!-- Contenido principal -->
+            <div class="card__contenido">
+              <h4 class="card__titulo">Monitor LG UltraWide</h4>
+              <p class="card__codigo">BN-2024-002</p>
+              <p class="card__usuario"><i class="fas fa-user"></i> Jose Martinez</p>
+              <p class="card__departamento"><i class="fas fa-building"></i> Archivo</p>
+            </div>
+            <!-- pie de la card  -->
+             <footer class="card__pieDeLaCard">
+                <button>Ver detalles</button>
+                <i class="fas fa-edit text-gray-600"></i>
+             </footer>
+          </article>
+                    <article class="todosLosEquipos__card">
+            <!-- Encabezado del card -->
+            <header class="card__encabezado">
+              <i class="fas fa-desktop icono-tipo"></i>
+              <span class="estado activo">Activo</span>
+            </header>
+
+            <!-- Contenido principal -->
+            <div class="card__contenido">
+              <h4 class="card__titulo">CPU Dell Optiplex</h4>
+              <p class="card__codigo">BN-2024-001</p>
+              <p class="card__usuario"><i class="fas fa-user"></i> José Castillo</p>
+              <p class="card__departamento"><i class="fas fa-building"></i> Sistemas</p>
+              <p class="card__caracteristicas"><i class="fas fa-microchip"></i> Intel Core i7-12700</p>
+            </div>
+            <!-- pie de la card  -->
+             <footer class="card__pieDeLaCard">
+                <button>Ver detalles</button>
+                <i class="fas fa-edit text-gray-600"></i>
+             </footer>
+          </article>
         </div>
       </div>
     </section>
@@ -384,7 +425,7 @@ import navbarView from '../iu/navbarView.vue';
   color: #9F2D22;
 }
 .card__encabezado .almacen {
-  background-color: #02367011;
+  background-color: #02367022;
   color: #023670;
 }
 
@@ -424,11 +465,25 @@ import navbarView from '../iu/navbarView.vue';
   color: #fff;
   font-size: 15px;
   cursor: pointer;
+  transform: scale(1);
+  transition: transform .3s;
+}
+.card__pieDeLaCard button:hover{
+  transform: scale(1.05);
+  transition: transform .3s;
 }
 .card__pieDeLaCard i{
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #DEE2E6;
   cursor: pointer;
+  transform: scale(1);
+  transition: transform .3s;
+}
+.card__pieDeLaCard i:hover{
+  transform: scale(1.15);
+  transition: all .3s;
+  background: #023670;
+  color: #fff;
 }
 </style>

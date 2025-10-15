@@ -113,6 +113,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
+  z-index: 20;
 }
 
 .aside__navbar {
