@@ -110,17 +110,16 @@ import navbarView from '../iu/navbarView.vue';
           <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
             <header class="card__encabezado">
-              <i class="fas fa-desktop icono-tipo"></i>
+              <i class="fas fa-tv text-2xl icono-tipo"></i>
               <span class="estado activo">Activo</span>
             </header>
 
             <!-- Contenido principal -->
             <div class="card__contenido">
-              <h4 class="card__titulo">CPU Dell Optiplex</h4>
-              <p class="card__codigo">BN-2024-001</p>
-              <p class="card__usuario"><i class="fas fa-user"></i> Juan Pérez</p>
-              <p class="card__departamento"><i class="fas fa-building"></i> Sistemas</p>
-              <p class="card__caracteristicas"><i class="fas fa-microchip"></i> Intel Core i7-12700</p>
+              <h4 class="card__titulo">Monitor LG UltraWide</h4>
+              <p class="card__codigo">BN-2024-002</p>
+              <p class="card__usuario"><i class="fas fa-user"></i> María González</p>
+              <p class="card__departamento"><i class="fas fa-building"></i> Contabilidad</p>
             </div>
             <!-- pie de la card  -->
              <footer class="card__pieDeLaCard">
@@ -131,17 +130,37 @@ import navbarView from '../iu/navbarView.vue';
           <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
             <header class="card__encabezado">
-              <i class="fas fa-desktop icono-tipo"></i>
-              <span class="estado activo">Activo</span>
+              <i class="fas fa-box text-2xl icono-tipo"></i>
+              <span class="estado mantenimiento">En Mantenimiento</span>
             </header>
 
             <!-- Contenido principal -->
             <div class="card__contenido">
-              <h4 class="card__titulo">CPU Dell Optiplex</h4>
-              <p class="card__codigo">BN-2024-001</p>
-              <p class="card__usuario"><i class="fas fa-user"></i> Juan Pérez</p>
-              <p class="card__departamento"><i class="fas fa-building"></i> Sistemas</p>
-              <p class="card__caracteristicas"><i class="fas fa-microchip"></i> Intel Core i7-12700</p>
+              <h4 class="card__titulo">Proyector Epson</h4>
+              <p class="card__codigo">BN-2024-003</p>
+              <p class="card__usuario"><i class="fas fa-user"></i> Carlos Ramírez</p>
+              <p class="card__departamento"><i class="fas fa-building"></i> Capacitación</p>
+            </div>
+
+            <!-- pie de la card  -->
+             <footer class="card__pieDeLaCard">
+                <button>Ver detalles</button>
+                <i class="fas fa-edit text-gray-600"></i>
+             </footer>
+          </article>
+          <article class="todosLosEquipos__card">
+            <!-- Encabezado del card -->
+            <header class="card__encabezado">
+              <i class="fas fa-box text-2xl icono-tipo"></i>
+              <span class="estado almacen">Almacén</span>
+            </header>
+
+            <!-- Contenido principal -->
+            <div class="card__contenido">
+              <h4 class="card__titulo">Escáner HP ScanJet</h4>
+              <p class="card__codigo">BN-2024-004</p>
+              <p class="card__usuario"><i class="fas fa-user"></i> Ana Martínez</p>
+              <p class="card__departamento"><i class="fas fa-building"></i> Archivo</p>
             </div>
 
             <!-- pie de la card  -->
@@ -305,42 +324,68 @@ import navbarView from '../iu/navbarView.vue';
   color: #666;
 }
 /* estilos para las cards de todos los equipos  */
-.sectionEquipos__todosLosEquipos{
+.sectionEquipos__todosLosEquipos {
   display: flex;
-  text-wrap: wrap;
+  flex-wrap: wrap; 
   margin: 20px 0;
   gap: 20px;
+  justify-content: flex-start; 
 }
-.todosLosEquipos__card{
-  flex: 1;
+
+.todosLosEquipos__card {
+  flex: 1 1 300px; 
+  max-width: 350px;
   border: 1px solid #DEE2E6;
   border-radius: 8px;
   padding: 20px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 .card__encabezado{
   display: flex;
   justify-content: space-between;
 }
-.fa-desktop{
-  color: #023670;
+.card__encabezado .icono-tipo{
   font-size: 25px;
+  padding: 15px;
+  border-radius: 8px;
 }
-.estado {
-  width: fit-content;
+.card__encabezado .fa-desktop{
+  color: #023670;
+  background: #02367011;
+}
+.card__encabezado .fa-tv{
+  color: #00A63E;
+  background: #00A63E11;
+}
+.card__encabezado .fa-box{
+  color: #F54A00;
+  background: #F54A0011;
+}
+
+.card__encabezado .estado {
   padding: 4px 12px;
   border-radius: 100px;
   font-weight: 600;
   font-size: 12px;
+  height: fit-content;
 }
 
-.estado.activo {
+.card__encabezado .activo {
   background-color: #DBFCE7;
-  color: #1E5D8C;
+  color: #016630;
 }
 
-.estado.mantenimiento {
+.card__encabezado .mantenimiento {
   background-color: #FFEDD4;
   color: #9F2D22;
+}
+.card__encabezado .almacen {
+  background-color: #02367011;
+  color: #023670;
 }
 
 .card__contenido{
@@ -348,6 +393,21 @@ import navbarView from '../iu/navbarView.vue';
   flex-direction: column;
   gap: 10px;
   margin: 15px 0;
+}
+.card__contenido .card__titulo{
+  font-size: 16px;
+  font-weight: 500;
+}
+.card__contenido .card__codigo{
+  font-size: 15px;
+  font-weight: 500;
+  color: #023670;
+}
+.card__contenido p, .card__contenido .fas{
+  color: #666;
+}
+.card__contenido .fas{
+  margin-right: 10px;
 }
 .card__pieDeLaCard{
   display: flex;
