@@ -1,9 +1,15 @@
 <script setup>
-import navbarView from '../iu/navbarView.vue';
+import { ref } from "vue";
+import ModalDetalle from "../../components/modalDetallesComponent.vue";
+import NavbarView from "../iu/navbarView.vue";
+
+const showModalDetalle = ref(false);
+const openModalDetalle = () => (showModalDetalle.value = true);
+const closeModalDetalle = () => (showModalDetalle.value = false);
 </script>
 <template>
   <main id="main">
-    <navbarView></navbarView>
+    <NavbarView />
     <section id="sectionEquipos">
       <div class="containerRetringido">
         <!-- el encabezado  -->
@@ -102,10 +108,10 @@ import navbarView from '../iu/navbarView.vue';
               <p class="card__caracteristicas"><i class="fas fa-microchip"></i> Intel Core i7-12700</p>
             </div>
             <!-- pie de la card  -->
-             <footer class="card__pieDeLaCard">
-                <button>Ver detalles</button>
-                <i class="fas fa-edit text-gray-600"></i>
-             </footer>
+            <footer class="card__pieDeLaCard">
+              <button @click="openModalDetalle">Ver detalles</button>
+              <i class="fas fa-edit text-gray-600"></i>
+            </footer>
           </article>
           <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
@@ -122,10 +128,10 @@ import navbarView from '../iu/navbarView.vue';
               <p class="card__departamento"><i class="fas fa-building"></i> Contabilidad</p>
             </div>
             <!-- pie de la card  -->
-             <footer class="card__pieDeLaCard">
-                <button>Ver detalles</button>
-                <i class="fas fa-edit text-gray-600"></i>
-             </footer>
+            <footer class="card__pieDeLaCard">
+              <button @click="openModalDetalle">Ver detalles</button>
+              <i class="fas fa-edit text-gray-600"></i>
+            </footer>
           </article>
           <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
@@ -143,10 +149,10 @@ import navbarView from '../iu/navbarView.vue';
             </div>
 
             <!-- pie de la card  -->
-             <footer class="card__pieDeLaCard">
-                <button>Ver detalles</button>
-                <i class="fas fa-edit text-gray-600"></i>
-             </footer>
+            <footer class="card__pieDeLaCard">
+              <button @click="openModalDetalle">Ver detalles</button>
+              <i class="fas fa-edit text-gray-600"></i>
+            </footer>
           </article>
           <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
@@ -164,12 +170,12 @@ import navbarView from '../iu/navbarView.vue';
             </div>
 
             <!-- pie de la card  -->
-             <footer class="card__pieDeLaCard">
-                <button>Ver detalles</button>
-                <i class="fas fa-edit text-gray-600"></i>
-             </footer>
+            <footer class="card__pieDeLaCard">
+              <button @click="openModalDetalle">Ver detalles</button>
+              <i class="fas fa-edit text-gray-600"></i>
+            </footer>
           </article>
-                    <article class="todosLosEquipos__card">
+          <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
             <header class="card__encabezado">
               <i class="fas fa-tv text-2xl icono-tipo"></i>
@@ -184,12 +190,12 @@ import navbarView from '../iu/navbarView.vue';
               <p class="card__departamento"><i class="fas fa-building"></i> Archivo</p>
             </div>
             <!-- pie de la card  -->
-             <footer class="card__pieDeLaCard">
-                <button>Ver detalles</button>
-                <i class="fas fa-edit text-gray-600"></i>
-             </footer>
+            <footer class="card__pieDeLaCard">
+              <button @click="openModalDetalle">Ver detalles</button>
+              <i class="fas fa-edit text-gray-600"></i>
+            </footer>
           </article>
-                    <article class="todosLosEquipos__card">
+          <article class="todosLosEquipos__card">
             <!-- Encabezado del card -->
             <header class="card__encabezado">
               <i class="fas fa-desktop icono-tipo"></i>
@@ -205,12 +211,14 @@ import navbarView from '../iu/navbarView.vue';
               <p class="card__caracteristicas"><i class="fas fa-microchip"></i> Intel Core i7-12700</p>
             </div>
             <!-- pie de la card  -->
-             <footer class="card__pieDeLaCard">
-                <button>Ver detalles</button>
-                <i class="fas fa-edit text-gray-600"></i>
-             </footer>
+            <footer class="card__pieDeLaCard">
+              <button @click="openModalDetalle">Ver detalles</button>
+              <i class="fas fa-edit text-gray-600"></i>
+            </footer>
           </article>
         </div>
+        <!-- Modal -->
+        <ModalDetalle :show="showModalDetalle" @close="closeModalDetalle" />
       </div>
     </section>
   </main>
@@ -364,17 +372,18 @@ import navbarView from '../iu/navbarView.vue';
   margin-right: 10px;
   color: #666;
 }
+
 /* estilos para las cards de todos los equipos  */
 .sectionEquipos__todosLosEquipos {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   margin: 20px 0;
   gap: 20px;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 .todosLosEquipos__card {
-  flex: 1 1 300px; 
+  flex: 1 1 300px;
   max-width: 350px;
   border: 1px solid #DEE2E6;
   border-radius: 8px;
@@ -385,24 +394,28 @@ import navbarView from '../iu/navbarView.vue';
   justify-content: space-between;
 }
 
-.card__encabezado{
+.card__encabezado {
   display: flex;
   justify-content: space-between;
 }
-.card__encabezado .icono-tipo{
+
+.card__encabezado .icono-tipo {
   font-size: 25px;
   padding: 15px;
   border-radius: 8px;
 }
-.card__encabezado .fa-desktop{
+
+.card__encabezado .fa-desktop {
   color: #023670;
   background: #02367011;
 }
-.card__encabezado .fa-tv{
+
+.card__encabezado .fa-tv {
   color: #00A63E;
   background: #00A63E11;
 }
-.card__encabezado .fa-box{
+
+.card__encabezado .fa-box {
   color: #F54A00;
   background: #F54A0011;
 }
@@ -424,38 +437,46 @@ import navbarView from '../iu/navbarView.vue';
   background-color: #FFEDD4;
   color: #9F2D22;
 }
+
 .card__encabezado .almacen {
   background-color: #02367022;
   color: #023670;
 }
 
-.card__contenido{
+.card__contenido {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: 15px 0;
 }
-.card__contenido .card__titulo{
+
+.card__contenido .card__titulo {
   font-size: 16px;
   font-weight: 500;
 }
-.card__contenido .card__codigo{
+
+.card__contenido .card__codigo {
   font-size: 15px;
   font-weight: 500;
   color: #023670;
 }
-.card__contenido p, .card__contenido .fas{
+
+.card__contenido p,
+.card__contenido .fas {
   color: #666;
 }
-.card__contenido .fas{
+
+.card__contenido .fas {
   margin-right: 10px;
 }
-.card__pieDeLaCard{
+
+.card__pieDeLaCard {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.card__pieDeLaCard button{
+
+.card__pieDeLaCard button {
   flex: 1;
   border: none;
   text-align: start;
@@ -468,11 +489,13 @@ import navbarView from '../iu/navbarView.vue';
   transform: scale(1);
   transition: transform .3s;
 }
-.card__pieDeLaCard button:hover{
+
+.card__pieDeLaCard button:hover {
   transform: scale(1.05);
   transition: transform .3s;
 }
-.card__pieDeLaCard i{
+
+.card__pieDeLaCard i {
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #DEE2E6;
@@ -480,10 +503,13 @@ import navbarView from '../iu/navbarView.vue';
   transform: scale(1);
   transition: transform .3s;
 }
-.card__pieDeLaCard i:hover{
+
+.card__pieDeLaCard i:hover {
   transform: scale(1.15);
   transition: all .3s;
   background: #023670;
   color: #fff;
 }
+
+/* estilos para el modal  */
 </style>

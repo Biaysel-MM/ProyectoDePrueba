@@ -271,30 +271,6 @@ const chartOptions = {
 </template>
 
 <style scoped>
-#aside {
-  width: 250px;
-  height: 100vh;
-  background: #023670;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: fixed;
-}
-
-.aside__navbar {
-  margin-bottom: auto;
-}
-
-.aside__navbar,
-.aside__encabezado {
-  padding: 20px;
-}
-
-.aside__pieDelAside {
-  padding: 10px 20px;
-}
-
 /* estilos se la seccion completa del dashboard */
 #sectionDashboard {
   margin-left: 250px;

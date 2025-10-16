@@ -3,12 +3,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/auth/LoginView.vue'
 import dashboardAdmin from '../views/admin/dashboardView.vue'
 import equiposdAdmin from '../views/admin/equiposView.vue'
+import movimientosdAdmin from '../views/admin/movimientosView.vue'
 import inicioSoporteTecnico from '../views/soporteTecnico/inicioView.vue'
 
 const routes = [
   { path: '/', name: 'login', component: Login },
   { path: '/admin/dashboard', name: 'dashboard-admin', component: dashboardAdmin },
   { path: '/admin/equipos', name: 'equipos-admin', component: equiposdAdmin },
+  { path: '/admin/movimientos', name: 'movimientos-admin', component: movimientosdAdmin },
   { path: '/inicio', name: 'inicio-soporte', component: inicioSoporteTecnico },
   {
     path: '/:pathMatch(.*)*',
