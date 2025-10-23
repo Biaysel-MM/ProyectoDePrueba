@@ -1,11 +1,20 @@
 <script setup>
 import { ref } from "vue";
 import ModalDetalle from "../../components/modalDetallesComponent.vue";
+import ModalHistorial from "../../components/modalHistorialComponent.vue";
 import NavbarView from "../iu/navbarView.vue";
 
+// mostrar modal de detalle 
 const showModalDetalle = ref(false);
 const openModalDetalle = () => (showModalDetalle.value = true);
 const closeModalDetalle = () => (showModalDetalle.value = false);
+
+// mostrar modal de historial 
+const showModalHistorial = ref(false);
+const openModalHistorial = () => (showModalHistorial.value = true);
+const closeModalHistorial = () => (showModalHistorial.value = false);
+
+
 </script>
 <template>
   <main id="main">
@@ -217,7 +226,7 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             </footer>
           </article>
         </div>
-        <!-- Modal -->
+        <!-- Modal Detalle-->
         <ModalDetalle :show="showModalDetalle" @close="closeModalDetalle" />
       </div>
     </section>
