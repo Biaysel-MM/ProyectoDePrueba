@@ -92,29 +92,111 @@ function reopenParent() {
             <p>Total: <span>3 usuarios</span></p>
           </header>
 
-          <article class="modal__article">
+          <article class="modal__article modal__article--active" aria-labelledby="user-name">
             <header class="modal__article-header">
-              <h4>Juan Pérez</h4>
-              <span class="modal__article-status estado activo">Activo</span>
+              <div class="modal__article-user">
+                <span class="modal__article-user-avatar" aria-hidden="true">M</span>
+                <div class="modal__article-user-info">
+                  <h4 id="user-name" class="modal__article-user-name">Juan Pérez</h4>
+                  <div class="modal__article-user-department">
+                    <i class="fas fa-building" aria-hidden="true"></i>
+                    <p>Sistema</p>
+                  </div>
+                </div>
+              </div>
+
+              <span class="modal__article-status estado activo" aria-label="Estado del usuario">
+                Usuario Actual
+              </span>
             </header>
-            <p>Departamento: Sistemas</p>
+
+            <footer class="modal__article-fecha">
+              <div class="modal__article-fecha-item">
+                <h5>Fecha de Asignación</h5>
+                <time datetime="2025-10-01">01/10/2025</time>
+              </div>
+
+              <div class="modal__article-fecha-item">
+                <h5>Fecha de Retiro</h5>
+                <time>Actual</time>
+              </div>
+
+              <div class="modal__article-fecha-item">
+                <h5>Días de Uso</h5>
+                <time>9 días.</time>
+              </div>
+            </footer>
           </article>
 
-          <article class="modal__article">
+          <article class="modal__article" aria-labelledby="user-name">
             <header class="modal__article-header">
-              <h4>Laura García</h4>
-              <span class="modal__article-status estado activo">Activo</span>
+              <div class="modal__article-user">
+                <span class="modal__article-user-avatar" aria-hidden="true">J</span>
+                <div class="modal__article-user-info">
+                  <h4 id="user-name" class="modal__article-user-name">María González</h4>
+                  <div class="modal__article-user-department">
+                    <i class="fas fa-building" aria-hidden="true"></i>
+                    <p>Contabilidad</p>
+                  </div>
+                </div>
+              </div>
             </header>
-            <p>Departamento: Mantenimiento</p>
+
+            <footer class="modal__article-fecha">
+              <div class="modal__article-fecha-item">
+                <h5>Fecha de Asignación</h5>
+                <time datetime="2025-10-01">15/08/2025</time>
+              </div>
+
+              <div class="modal__article-fecha-item">
+                <h5>Fecha de Retiro</h5>
+                <time datetime="30/09/2025">30/09/2025</time>
+              </div>
+
+              <div class="modal__article-fecha-item">
+                <h5>Días de Uso</h5>
+                <time>46 días.</time>
+              </div>
+            </footer>
           </article>
 
-          <article class="modal__article">
+
+          <article class="modal__article" aria-labelledby="user-name">
             <header class="modal__article-header">
-              <h4>Carlos Méndez</h4>
-              <span class="modal__article-status estado inactivo">Inactivo</span>
+              <div class="modal__article-user">
+                <span class="modal__article-user-avatar" aria-hidden="true">P</span>
+                <div class="modal__article-user-info">
+                  <h4 id="user-name" class="modal__article-user-name">Pedro López</h4>
+                  <div class="modal__article-user-department">
+                    <i class="fas fa-building" aria-hidden="true"></i>
+                    <p>Recursos Humanos</p>
+                  </div>
+                </div>
+              </div>
             </header>
-            <p>Departamento: Soporte Técnico</p>
+
+            <footer class="modal__article-fecha">
+              <div class="modal__article-fecha-item">
+                <h5>Fecha de Asignación</h5>
+                <time datetime="01/06/2025">01/06/2025</time>
+              </div>
+
+              <div class="modal__article-fecha-item">
+                <h5>Fecha de Retiro</h5>
+                <time>14/08/2025</time>
+              </div>
+
+              <div class="modal__article-fecha-item">
+                <h5>Días de Uso</h5>
+                <time>74 días.</time>
+              </div>
+            </footer>
           </article>
+
+          <div class="modal__msj-de-info">
+            <i class="fas fa-info-circle text-[#002D62]"></i>
+            <p>Total de días en uso: 129 días</p>
+          </div>
 
           <div class="modal__footer">
             <article class="modal__footer-card">
@@ -238,45 +320,86 @@ function reopenParent() {
   flex-direction: column;
   gap: 5px;
 }
+.modal__article--active{
+  border-left-color: #00C950;
+}
 
 .modal__article-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.modal__article-header h4 {
+.modal__article-user-avatar {
+  color: #fff;
+  background-color: #023670;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.modal__article-user h4 {
   font-size: 16px;
   font-weight: 600;
   color: #222;
 }
 
-.modal__article-info {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  color: #666;
-  font-size: 14px;
-}
-
-.modal__article p {
-  color: #666;
-  font-size: 15px;
-}
-
-.modal__article-info-user {
+.modal__article-user {
   display: flex;
   gap: 5px;
   align-items: center;
   margin-left: 5px;
 }
-
-.modal__article-info-user i {
-  color: #023670;
-  font-size: 14px;
+.modal__article-user-department{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
 }
 
-.modal__article-info-user p {
+/* fechas  */
+.modal__article-fecha{
+  display: flex;
+  border-top: 1px solid #ddd;
+  margin-top: 5px;
+  padding: 10px;
+}
+.modal__article-fecha-item{
+  flex: 1;
+}
+.modal__article-fecha-item h5{
+  font-weight: 500;
+  font-size: 12px;
+  color: #666;
+}
+.modal__article-fecha-item time{
   font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* mensaje de informacion  */
+.modal__msj-de-info{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #c7e1ff;
+  background-color: #EFF6FF;
+  gap: 5px;
+}
+.modal__msj-de-info i{
+  color: #023670;
+}
+.modal__msj-de-info p{
+  font-size: 14px;
+  color: #666;
 }
 
 /* pie de pagina del article  */

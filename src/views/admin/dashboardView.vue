@@ -3,7 +3,7 @@ import VueApexCharts from 'vue3-apexcharts'
 import navbarView from '../iu/navbarView.vue'
 
 // Registrar componente global localmente
-const apexchart = VueApexCharts
+const apexchart = VueApexCharts;
 
 const series = [
   {
