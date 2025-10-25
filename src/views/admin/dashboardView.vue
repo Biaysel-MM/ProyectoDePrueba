@@ -3,6 +3,19 @@ import { ref, onMounted } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import NavbarView from '../iu/navbarView.vue'
 
+import ModalDetalle from "../../components/modalDetallesComponent.vue";
+import ModalEditar from '../../components/modalEditarComponent.vue';
+
+// mostrar modal de detalle 
+const showModalDetalle = ref(false);
+const openModalDetalle = () => (showModalDetalle.value = true);
+const closeModalDetalle = () => (showModalDetalle.value = false);
+
+// mostrar modal de detalle 
+const showModalEditar = ref(false);
+const openModalEditar = () => (showModalEditar.value = true);
+const closeModalEditar = () => (showModalEditar.value = false);
+
 // Registrar componente global localmente
 const ApexChart = VueApexCharts
 
@@ -251,15 +264,15 @@ onMounted(() => {
               <span class="dashboard__status dashboard__status--active">Activo</span>
               <span class="dashboard__table-cell dashboard__table-cell--muted">10/10/2025</span>
               <div class="dashboard__actions">
-                <button class="dashboard__action-button" aria-label="Ver detalles">
+                <button class="dashboard__action-button" aria-label="Ver detalles" @click="openModalDetalle">
                   <i class="fa-solid fa-eye" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Editar equipo">
+                <button class="dashboard__action-button" aria-label="Editar equipo" @click="openModalEditar">
                   <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Eliminar equipo">
+                <!-- <button class="dashboard__action-button" aria-label="Eliminar equipo">
                   <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
+                </button> -->
               </div>
             </div>
             
@@ -273,15 +286,15 @@ onMounted(() => {
               <span class="dashboard__status dashboard__status--maintenance">En Mantenimiento</span>
               <span class="dashboard__table-cell dashboard__table-cell--muted">11/10/2025</span>
               <div class="dashboard__actions">
-                <button class="dashboard__action-button" aria-label="Ver detalles">
+                <button class="dashboard__action-button" aria-label="Ver detalles" @click="openModalDetalle">
                   <i class="fa-solid fa-eye" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Editar equipo">
+                <button class="dashboard__action-button" aria-label="Editar equipo" @click="openModalEditar">
                   <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Eliminar equipo">
+                <!-- <button class="dashboard__action-button" aria-label="Eliminar equipo">
                   <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
+                </button> -->
               </div>
             </div>
             
@@ -295,15 +308,15 @@ onMounted(() => {
               <span class="dashboard__status dashboard__status--maintenance">En Mantenimiento</span>
               <span class="dashboard__table-cell dashboard__table-cell--muted">08/10/2025</span>
               <div class="dashboard__actions">
-                <button class="dashboard__action-button" aria-label="Ver detalles">
+                <button class="dashboard__action-button" aria-label="Ver detalles" @click="openModalDetalle">
                   <i class="fa-solid fa-eye" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Editar equipo">
+                <button class="dashboard__action-button" aria-label="Editar equipo" @click="openModalEditar">
                   <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Eliminar equipo">
+                <!-- <button class="dashboard__action-button" aria-label="Eliminar equipo">
                   <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
+                </button> -->
               </div>
             </div>
             
@@ -317,19 +330,22 @@ onMounted(() => {
               <span class="dashboard__status dashboard__status--active">Activo</span>
               <span class="dashboard__table-cell dashboard__table-cell--muted">07/10/2025</span>
               <div class="dashboard__actions">
-                <button class="dashboard__action-button" aria-label="Ver detalles">
+                <button class="dashboard__action-button" aria-label="Ver detalles" @click="openModalDetalle">
                   <i class="fa-solid fa-eye" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Editar equipo">
+                <button class="dashboard__action-button" aria-label="Editar equipo" @click="openModalEditar">
                   <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
                 </button>
-                <button class="dashboard__action-button" aria-label="Eliminar equipo">
+                <!-- <button class="dashboard__action-button" aria-label="Eliminar equipo">
                   <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
         </div>
+        <!-- Modal Detalle-->
+        <ModalDetalle :show="showModalDetalle" @close="closeModalDetalle" />
+        <ModalEditar :show="showModalEditar" @close="closeModalEditar" />
       </div>
     </section>
   </main>

@@ -105,7 +105,7 @@ const closeModal = () => emit("close");
 
         <!-- Botones de acción -->
         <div class="modal__actions">
-          <button type="button" class="modal__btn modal__btn--cancelar">
+          <button type="button" class="modal__btn modal__btn--cancelar" @click="closeModal">
             Cancelar
           </button>
           <button type="submit" class="modal__btn modal__btn--confirmar">
@@ -233,9 +233,18 @@ const closeModal = () => emit("close");
   border: 1px solid #ddd;
   background-color: #fff;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 14px;
   text-align: start;
   cursor: pointer;
+}
+.modal__btn--cancelar {
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.modal__btn--cancelar:hover {
+  background: #e9ecef;
 }
 .modal__btn--confirmar{
   background: #CE1126;

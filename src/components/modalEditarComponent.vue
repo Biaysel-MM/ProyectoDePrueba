@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch, nextTick } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({ show: Boolean });
 const emit = defineEmits(["close"]);
@@ -10,80 +10,6 @@ const departamento = ref("Seleccionar departamento");
 const estado = ref("Seleccionar estado");
 
 const closeModal = () => emit("close");
-
-// Función para inicializar los selects personalizados
-const initCustomSelects = () => {
-  const selects = document.querySelectorAll('.form__select');
-  
-  selects.forEach(select => {
-    const summary = select.querySelector('summary');
-    const options = select.querySelectorAll('li');
-    
-    // Remover event listeners anteriores para evitar duplicados
-    options.forEach(option => {
-      const newOption = option.cloneNode(true);
-      option.parentNode.replaceChild(newOption, option);
-    });
-
-    // Re-obtener las opciones después del clone
-    const freshOptions = select.querySelectorAll('li');
-    
-    // Manejar clic en cada opción
-    freshOptions.forEach(option => {
-      option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        
-        // Remover clase selected de todas las opciones
-        freshOptions.forEach(o => o.classList.remove('selected'));
-        
-        // Agregar clase selected a la opción clickeada
-        option.classList.add('selected');
-        
-        // Actualizar el texto del summary
-        summary.textContent = option.textContent;
-        
-        // Actualizar el estado reactivo correspondiente
-        if (select.id === 'tipoEquipo') {
-          tipoEquipo.value = option.textContent;
-        } else if (select.id === 'departamento') {
-          departamento.value = option.textContent;
-        } else if (select.id === 'estado') {
-          estado.value = option.textContent;
-        }
-        
-        // Cerrar el details
-        select.removeAttribute('open');
-      });
-    });
-  });
-
-  // Cerrar selects al hacer clic fuera
-  document.addEventListener('click', (e) => {
-    selects.forEach(select => {
-      if (!select.contains(e.target)) {
-        select.removeAttribute('open');
-      }
-    });
-  });
-};
-
-// Watcher para cuando el modal se muestra
-watch(() => props.show, (newVal) => {
-  if (newVal) {
-    nextTick(() => {
-      initCustomSelects();
-    });
-  }
-});
-
-// También inicializar en onMounted por si acaso
-onMounted(() => {
-  if (props.show) {
-    nextTick(() => {
-      initCustomSelects();
-    });
-  }
-});
 </script>
 
 <template>
@@ -100,16 +26,16 @@ onMounted(() => {
         </h2>
       </header>
 
-      <form class="modal__editar" aria-describedby="editarDescripcion">
+      <form class="modal__form" aria-describedby="editarDescripcion">
         <p id="editarDescripcion" class="sr-only">
           Modifica los datos del equipo seleccionado.
         </p>
 
-        <fieldset class="modal__editar-container">
+        <fieldset class="modal__form-container">
           <legend class="sr-only">Información del equipo</legend>
 
           <!-- Primer lado -->
-          <div class="modal__editar-lado modal__editar-lado--primero">
+          <div class="modal__form-side modal__form-side--first">
             <div class="form__group">
               <label for="bienNacional" class="form__label">Bien Nacional</label>
               <input type="text" id="bienNacional" name="bienNacional" placeholder="BN-2024-xxx" class="form__input" />
@@ -117,16 +43,14 @@ onMounted(() => {
 
             <div class="form__group">
               <label for="tipoEquipo" class="form__label">Tipo de Equipo</label>
-              <details class="form__select" id="tipoEquipo">
-                <summary>{{ tipoEquipo }}</summary>
-                <ul>
-                  <li>CPU</li>
-                  <li>Monitor</li>
-                  <li>Proyector</li>
-                  <li>Escáner</li>
-                  <li>Triturador</li>
-                </ul>
-              </details>
+              <select v-model="tipoEquipo" class="form__select" id="tipoEquipo">
+                <option disabled value="Seleccionar tipo">Seleccionar tipo</option>
+                <option>CPU</option>
+                <option>Monitor</option>
+                <option>Proyector</option>
+                <option>Escáner</option>
+                <option>Triturador</option>
+              </select>
             </div>
 
             <div class="form__group">
@@ -156,7 +80,7 @@ onMounted(() => {
           </div>
 
           <!-- Segundo lado -->
-          <div class="modal__editar-lado modal__editar-lado--segundo">
+          <div class="modal__form-side modal__form-side--second">
             <div class="form__group">
               <label for="nombreEquipo" class="form__label">Nombre del Equipo</label>
               <input type="text" id="nombreEquipo" name="nombreEquipo" placeholder="CPU Dell Optiplex 7090" class="form__input" />
@@ -174,15 +98,13 @@ onMounted(() => {
 
             <div class="form__group">
               <label for="departamento" class="form__label">Departamento</label>
-              <details class="form__select" id="departamento">
-                <summary>{{ departamento }}</summary>
-                <ul>
-                  <li>Sistemas</li>
-                  <li>Contabilidad</li>
-                  <li>Recursos Humanos</li>
-                  <li>Almacén</li>
-                </ul>
-              </details>
+              <select v-model="departamento" class="form__select" id="departamento">
+                <option disabled value="Seleccionar departamento">Seleccionar departamento</option>
+                <option>Sistemas</option>
+                <option>Contabilidad</option>
+                <option>Recursos Humanos</option>
+                <option>Almacén</option>
+              </select>
             </div>
 
             <div class="form__group">
@@ -197,24 +119,22 @@ onMounted(() => {
 
             <div class="form__group">
               <label for="estado" class="form__label">Estado</label>
-              <details class="form__select" id="estado">
-                <summary>{{ estado }}</summary>
-                <ul>
-                  <li>Activo</li>
-                  <li>En Mantenimiento</li>
-                  <li>En Almacén</li>
-                  <li>Dado de baja</li>
-                </ul>
-              </details>
+              <select v-model="estado" class="form__select" id="estado">
+                <option disabled value="Seleccionar estado">Seleccionar estado</option>
+                <option>Activo</option>
+                <option>En Mantenimiento</option>
+                <option>En Almacén</option>
+                <option>Dado de baja</option>
+              </select>
             </div>
           </div>
         </fieldset>
 
         <div class="modal__actions">
-          <button type="button" class="modal__btn modal__btn--cancelar" @click="closeModal" aria-label="Cancelar edición">
+          <button type="button" class="modal__btn modal__btn--cancel" @click="closeModal" aria-label="Cancelar edición">
             Cancelar
           </button>
-          <button type="submit" class="modal__btn modal__btn--registrar" aria-label="Guardar cambios del equipo">
+          <button type="submit" class="modal__btn modal__btn--save" aria-label="Guardar cambios del equipo">
             <i class="fas fa-save" aria-hidden="true"></i>
             Guardar Cambios
           </button>
@@ -224,76 +144,219 @@ onMounted(() => {
   </div>
 </template>
 
-
 <style scoped>
-.modal__editar-lado{
-  flex: 1;
-}
-.modal__editar-container{
+/* Estilos generales del modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  gap: 10px;
-  border: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.modal__editar-item {
+.modal__content {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.modal__close:hover {
+  color: #333;
+}
+
+.modal__header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  color: #333;
+  margin: 0;
+}
+
+/* Estructura del formulario */
+.modal__form-container {
+  display: flex;
+  gap: 20px;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal__form-side {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  flex: 1;
+  gap: 16px;
 }
 
-.modal__editar-item label{
-  position: relative;
-  width: fit-content;
+/* Grupos de formulario */
+.form__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
   font-weight: 500;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
+  color: #333;
+  position: relative;
+  width: fit-content;
 }
-.modal__editar-item label::after{
+
+.form__label::after {
   content: '*';
   position: absolute;
   top: -2px;
   right: -8px;
+  color: #CE1126;
 }
 
-/* Inputs igual que details */
-.modal__editar-item input {
-  padding: 10px;
+/* Inputs */
+.form__input {
+  width: 100%;
+  padding: 10px 12px;
   font-size: 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
   outline: none;
-  transition: 0.3s all;
-}
-.modal__editar-item input:focus {
-  border-color: #023670;
-  box-shadow: 0 0 0 3px #2064b1aa;
+  transition: all 0.3s;
+  font-family: inherit;
+  box-sizing: border-box;
 }
 
-.modal__actions{
+.form__input:focus {
+  border-color: #023670;
+  box-shadow: 0 0 0 3px rgba(2, 54, 112, 0.2);
+}
+
+/* Selects nativos con estilo mejorado */
+.form__select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.form__select:focus {
+  outline: none;
+  border-color: #023670;
+  box-shadow: 0 0 0 3px rgba(2, 54, 112, 0.2);
+}
+
+/* Botones de acción */
+.modal__actions {
   display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: 20px;
+  gap: 16px;
   padding-top: 20px;
   border-top: 1px solid #ddd;
   margin-top: 20px;
 }
 
-.modal__btn{
-  padding: 10px 15px;
-  border: none;
-  background: none;
+.modal__btn {
+  flex: 1;
+  padding: 15px;
   border: 1px solid #ddd;
+  background-color: #fff;
   border-radius: 8px;
+  font-size: 14px;
+  text-align: start;
   cursor: pointer;
-  font-size: 16px;
 }
-.modal__btn--registrar{
+
+.modal__btn--cancel {
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.modal__btn--cancel:hover {
+  background: #e9ecef;
+}
+
+.modal__btn--save {
   background: #CE1126;
   color: #fff;
 }
-.modal__btn--registrar:hover{
+
+.modal__btn--save:hover {
   background: #A10E1E;
+}
+
+/* Accesibilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal__form-container {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .modal__content {
+    width: 95%;
+    padding: 16px;
+  }
+  
+  .modal__actions {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  
+  .modal__btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>
