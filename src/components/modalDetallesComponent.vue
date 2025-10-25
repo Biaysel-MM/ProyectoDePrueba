@@ -9,70 +9,36 @@ const props = defineProps({
 });
 const emit = defineEmits(["close"]);
 
-// isVisible controla si el modal Detalle está realmente visible.
-// Cuando abrimos un submodal ponemos isVisible = false para ocultarlo.
-const isVisible = ref(true);
+// Estado simplificado para los modales
+const activeModal = ref(null);
 
-// Submodales internos
-const showHistorial = ref(false);
-const showAsignarMantenimiento = ref(false);
-const showEditar = ref(false);
-
-// Si el prop show cambia (ej: reabrir desde el padre), reseteamos isVisible
+// Resetear cuando se abre desde el padre
 watch(() => props.show, (newVal) => {
-  if (newVal) {
-    // cada vez que se abra desde el padre, aseguramos que isVisible esté true
-    isVisible.value = true;
-    // y cerramos cualquier submodal residual
-    showHistorial.value = false;
-    showAsignarMantenimiento.value = false;
-    showEditar.value = false;
-  } else {
-    // si el padre solicita cierre, también cerramos submodales
-    showHistorial.value = false;
-    showAsignarMantenimiento.value = false;
-    showEditar.value = false;
-  }
+  if (!newVal) activeModal.value = null;
 });
 
-// abrir un submodal: ocultamos este modal y abrimos el hijo
-function openChild(name) {
-  isVisible.value = false;
-  if (name === "historial") showHistorial.value = true;
-  if (name === "asignarMantenimiento") showAsignarMantenimiento.value = true;
-  if (name === "editar") showEditar.value = true;
-}
+// Abrir modal hijo
+const openModal = (modalName) => {
+  activeModal.value = modalName;
+};
 
-// cuando un hijo se cierra, lo apagamos y reabrimos este modal (si el prop show sigue true)
-function onChildClose() {
-  showHistorial.value = false;
-  showAsignarMantenimiento.value = false;
-  showEditar.value = false;
+// Cerrar modal hijo
+const closeChildModal = () => {
+  activeModal.value = null;
+};
 
-  // Sólo reabrir si el padre todavía mantiene show = true
-  // (el padre puede haber cerrado todo; en ese caso no reabrimos)
-  if (props.show) {
-    isVisible.value = true;
-  }
-}
-
-// cerrar emitido hacia el padre (click en X o click fuera)
-function handleClose() {
-  // cerramos cualquier submodal interno también
-  showHistorial.value = false;
-  showAsignarMantenimiento.value = false;
-  showEditar.value = false;
-  // emitimos close al padre que controla :show
+// Cerrar todo
+const closeAll = () => {
+  activeModal.value = null;
   emit("close");
-}
-
+};
 </script>
 
-
 <template>
-  <div v-if="show && isVisible" class="modal" @click.self="handleClose">
+  <!-- Modal Principal -->
+  <div v-if="show && !activeModal" class="modal" @click.self="closeAll">
     <div class="modal__content">
-      <button class="modal__close" @click="handleClose">
+      <button class="modal__close" @click="closeAll">
         <i class="fa-solid fa-xmark"></i>
       </button>
 
@@ -119,13 +85,13 @@ function handleClose() {
         </article>
 
         <div class="modal__actions">
-          <button class="modal__button modal__button-historial" @click="openChild('historial')">
+          <button class="modal__button modal__button-historial" @click="openModal('historial')">
             <i class="fa-solid fa-clock-rotate-left"></i> Ver Historial
           </button>
-          <button class="modal__button modal__button-mantenimiento" @click="openChild('asignarMantenimiento')">
+          <button class="modal__button modal__button-mantenimiento" @click="openModal('asignarMantenimiento')">
             <i class="fas fa-clipboard-list"></i> Asignar Mantenimiento
           </button>
-          <button class="modal__button modal__button-editar" @click="openChild('editar')">
+          <button class="modal__button modal__button-editar" @click="openModal('editar')">
             <i class="fas fa-edit"></i> Editar
           </button>
           <button class="modal__button modal__button--icon-only">
@@ -135,12 +101,12 @@ function handleClose() {
       </slot>
     </div>
   </div>
-  <!-- Submodales: controlados por este componente -->
-  <ModalHistorial :show="showHistorial" @close="onChildClose" />
-  <ModalAsignarMantenimientos :show="showAsignarMantenimiento" @close="onChildClose" />
-  <ModalEditar :show="showEditar" @close="onChildClose" />
-</template>
 
+  <!-- Submodales -->
+  <ModalHistorial :show="activeModal === 'historial'" @close="closeChildModal" />
+  <ModalAsignarMantenimientos :show="activeModal === 'asignarMantenimiento'" @close="closeChildModal" />
+  <ModalEditar :show="activeModal === 'editar'" @close="closeChildModal" />
+</template>
 
 
 <style scoped>

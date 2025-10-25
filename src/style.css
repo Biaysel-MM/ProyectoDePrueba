@@ -154,3 +154,182 @@
     opacity: 1;
   }
 }
+
+
+
+
+
+
+
+
+/* ===== INPUTS GLOBALES ===== */
+.form__input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: #023670;
+  box-shadow: 0 0 0 2px rgba(2, 54, 112, 0.1);
+}
+
+.form__input--error {
+  border-color: #dc3545;
+}
+
+.form__input--success {
+  border-color: #28a745;
+}
+
+/* ===== SELECT CUSTOM GLOBAL ===== */
+.form__select {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Summary visible */
+.form__select summary {
+  list-style: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+.form__select summary:hover {
+  border-color: #023670;
+}
+
+/* Quitar triángulo por defecto */
+.form__select summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Opciones desplegables */
+.form__select ul {
+  margin: 4px 0 0 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  top: 100%;
+  left: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Abrir menú */
+.form__select[open] ul {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 8px;
+}
+
+/* Opciones individuales */
+.form__select li {
+  font-size: 14px;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* Última opción sin margen inferior */
+.form__select li:last-child {
+  margin-bottom: 0;
+}
+
+/* Hover */
+.form__select li:hover {
+  background-color: #023670;
+  color: #fff;
+  border-color: #023670;
+}
+
+/* Opción seleccionada */
+.form__select li.selected {
+  background-color: #023670;
+  color: #fff;
+  border-color: #023670;
+  font-weight: 500;
+}
+
+/* ===== TEXTAREA GLOBAL ===== */
+.form__textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form__textarea:focus {
+  outline: none;
+  border-color: #023670;
+  box-shadow: 0 0 0 2px rgba(2, 54, 112, 0.1);
+}
+
+/* ===== LABELS GLOBALES ===== */
+.form__label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.form__group {
+  margin-bottom: 16px;
+}
+
+/* ===== ESTADOS ===== */
+.form__select--error summary {
+  border-color: #dc3545;
+}
+
+.form__select--success summary {
+  border-color: #28a745;
+}
+
+/* Deshabilitado */
+.form__input:disabled,
+.form__select:disabled summary,
+.form__textarea:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
