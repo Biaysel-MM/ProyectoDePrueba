@@ -1,12 +1,19 @@
 <script setup>
 import { ref } from "vue";
-import ModalDetalle from "../../components/modalDetallesComponent.vue";
 import NavbarView from "../iu/navbarView.vue";
+
+import ModalDetalle from "../../components/modalDetallesComponent.vue";
+import ModalEditar from '../../components/modalEditarComponent.vue';
 
 // mostrar modal de detalle 
 const showModalDetalle = ref(false);
 const openModalDetalle = () => (showModalDetalle.value = true);
 const closeModalDetalle = () => (showModalDetalle.value = false);
+
+// mostrar modal de detalle 
+const showModalEditar = ref(false);
+const openModalEditar = () => (showModalEditar.value = true);
+const closeModalEditar = () => (showModalEditar.value = false);
 
 </script>
 <template>
@@ -112,7 +119,7 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             <!-- pie de la card  -->
             <footer class="card__pieDeLaCard">
               <button @click="openModalDetalle">Ver detalles</button>
-              <i class="fas fa-edit text-gray-600"></i>
+              <i class="fas fa-edit text-gray-600" @click="openModalEditar"></i>
             </footer>
           </article>
           <article class="todosLosEquipos__card">
@@ -132,7 +139,7 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             <!-- pie de la card  -->
             <footer class="card__pieDeLaCard">
               <button @click="openModalDetalle">Ver detalles</button>
-              <i class="fas fa-edit text-gray-600"></i>
+              <i class="fas fa-edit text-gray-600" @click="openModalEditar"></i>
             </footer>
           </article>
           <article class="todosLosEquipos__card">
@@ -153,7 +160,7 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             <!-- pie de la card  -->
             <footer class="card__pieDeLaCard">
               <button @click="openModalDetalle">Ver detalles</button>
-              <i class="fas fa-edit text-gray-600"></i>
+              <i class="fas fa-edit text-gray-600" @click="openModalEditar"></i>
             </footer>
           </article>
           <article class="todosLosEquipos__card">
@@ -174,7 +181,7 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             <!-- pie de la card  -->
             <footer class="card__pieDeLaCard">
               <button @click="openModalDetalle">Ver detalles</button>
-              <i class="fas fa-edit text-gray-600"></i>
+              <i class="fas fa-edit text-gray-600" @click="openModalEditar"></i>
             </footer>
           </article>
           <article class="todosLosEquipos__card">
@@ -194,7 +201,7 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             <!-- pie de la card  -->
             <footer class="card__pieDeLaCard">
               <button @click="openModalDetalle">Ver detalles</button>
-              <i class="fas fa-edit text-gray-600"></i>
+              <i class="fas fa-edit text-gray-600" @click="openModalEditar"></i>
             </footer>
           </article>
           <article class="todosLosEquipos__card">
@@ -215,12 +222,13 @@ const closeModalDetalle = () => (showModalDetalle.value = false);
             <!-- pie de la card  -->
             <footer class="card__pieDeLaCard">
               <button @click="openModalDetalle">Ver detalles</button>
-              <i class="fas fa-edit text-gray-600"></i>
+              <i class="fas fa-edit text-gray-600" @click="openModalEditar"></i>
             </footer>
           </article>
         </div>
         <!-- Modal Detalle-->
         <ModalDetalle :show="showModalDetalle" @close="closeModalDetalle" />
+        <ModalEditar :show="showModalEditar" @close="closeModalEditar" />
       </div>
     </section>
   </main>
