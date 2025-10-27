@@ -37,10 +37,10 @@
         </li>
 
         <li>
-          <router-link to="/admin/mantenimiento" class="navbar__navsLinks" exact-active-class="navsLinksActive">
+          <router-link to="/admin/mantenimientos" class="navbar__navsLinks" exact-active-class="navsLinksActive">
             <i class="fa-solid fa-screwdriver-wrench navsLinskAll"></i>
-            <span class="navsLinskAll">Mantenimiento</span>
-            <i v-if="$route.path === '/admin/mantenimiento'" class="fa-solid fa-chevron-right"></i>
+            <span class="navsLinskAll">Mantenimientos</span>
+            <i v-if="$route.path === '/admin/mantenimientos'" class="fa-solid fa-chevron-right"></i>
           </router-link>
         </li>
 

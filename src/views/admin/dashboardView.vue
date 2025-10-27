@@ -55,9 +55,8 @@ const chartOptions = ref({
   },
 })
 
-// Simulación de datos dinámicos
 onMounted(() => {
-  // Aquí podrías cargar datos reales desde una API
+  //  carga datos reales des una API
   console.log('Dashboard montado')
 })
 </script>
@@ -353,10 +352,6 @@ onMounted(() => {
 
 <style scoped>
 /* Estilos base */
-.dashboard {
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-}
 
 .dashboard__section {
   margin-left: 250px;
